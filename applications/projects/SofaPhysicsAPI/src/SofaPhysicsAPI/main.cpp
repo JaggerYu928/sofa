@@ -19,8 +19,10 @@
 *                                                                             *
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
+#include <sofa/config.h>
 #include "SofaPhysicsAPI.h"
-#include <sofa/helper/system/glut.h>
+#include "SofaPhysicsSimulation.h"
+#include "freeglut.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,7 +49,6 @@ int main(int argc, char *argv[])
     {
         defaultScene = argv[1];
     }
-
 
     glutInit(&argc, argv);
     glut_create();
