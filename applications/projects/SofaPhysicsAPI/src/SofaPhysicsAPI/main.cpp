@@ -19,8 +19,10 @@
 *                                                                             *
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
+#include <sofa/config.h>
 #include "SofaPhysicsAPI.h"
-#include <sofa/helper/system/glut.h>
+#include "SofaPhysicsSimulation.h"
+#include "freeglut.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,7 +54,7 @@ int main(int argc, char *argv[])
     glutInit(&argc, argv);
     glut_create();
 
-    mainSimulation = new SofaPhysicsSimulation;
+  /*  mainSimulation = new SofaPhysicsSimulation;
     if (defaultScene && *defaultScene)
     {
         if (!mainSimulation->load(defaultScene))
@@ -62,7 +64,7 @@ int main(int argc, char *argv[])
         }
         if (!mainSimulation->isAnimated())
             mainSimulation->start();
-    }
+    }*/
 
     glutMainLoop();
     return 0;
@@ -71,10 +73,10 @@ int main(int argc, char *argv[])
 static void glut_create()
 {
     glutInitDisplayMode ( GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE );
-    glutInitWindowSize(720,720);
+    glutInitWindowSize(640,480);
     glutCreateWindow ( ":: SOFA ::" );
 
-    glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
+    glClearColor ( 1.0, 1.0, 0.6, 1.0 );
     glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     glutSwapBuffers ();
     glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -101,7 +103,7 @@ static void glut_display()
     static float color = 0.0f;
     //color += 0.01; while(color > 1) color -= 2;
     float absc = (color < 0.0f) ? -color : color;
-    glClearColor(0.0f,0.0f,absc,1.0f);
+    glClearColor ( 1.0, 1.0, 0.6, 1.0 );
     glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     if (mainSimulation)
     {

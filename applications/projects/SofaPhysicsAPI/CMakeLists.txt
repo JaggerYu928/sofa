@@ -29,7 +29,7 @@ if(SofaValidation_FOUND)
         ${SOFAPHYSICSAPI_SRC_DIR}/SofaPhysicsDataController_impl.h
         ${SOFAPHYSICSAPI_SRC_DIR}/SofaPhysicsDataMonitor_impl.h
     )
-    list(APPEND HEADER_FILES 
+    list(APPEND SOURCE_FILES 
         ${SOFAPHYSICSAPI_SRC_DIR}/SofaPhysicsDataController.cpp
         ${SOFAPHYSICSAPI_SRC_DIR}/SofaPhysicsDataMonitor.cpp
     )
@@ -47,7 +47,6 @@ endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${Sofa_VERSION})
 
-
 ## Install rules and CMake package configurations files
 sofa_create_package_with_targets(
     PACKAGE_NAME  ${PROJECT_NAME}
@@ -56,3 +55,25 @@ sofa_create_package_with_targets(
     INCLUDE_SOURCE_DIR "src"
     INCLUDE_INSTALL_DIR ${PROJECT_NAME}
     )
+
+# 指定 FreeGLUT 的头文件目录
+include_directories("E:/CatAR/freeglut-3.4.0/include/GL")
+
+# 指定 FreeGLUT 库文件的目录
+link_directories("E:/CatAR/freeglut-3.4.0/build/lib/Release")
+
+# 添加可执行文件
+add_executable(App ${SOFAPHYSICSAPI_SRC_DIR}/main.cpp)
+
+target_link_libraries(App PUBLIC freeglut)
+target_link_libraries(App PUBLIC Sofa.Simulation.Graph SofaGui)
+target_link_libraries(App PUBLIC Sofa.Component)
+target_link_libraries(App PUBLIC SofaPhysicsAPI)
+
+if(SofaValidation_FOUND)
+    target_link_libraries(App PUBLIC SofaValidation)
+endif()
+
+set_target_properties(App PROPERTIES VERSION ${Sofa_VERSION})
+
+
