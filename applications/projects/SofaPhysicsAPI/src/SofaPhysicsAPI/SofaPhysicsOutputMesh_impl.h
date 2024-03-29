@@ -26,6 +26,7 @@
 #include <sofa/component/visual/VisualModelImpl.h>
 #include <sofa/core/visual/VisualModel.h>
 #include <sofa/core/visual/Shader.h>
+#include <sofa/core/behavior/MechanicalState.h>
 
 class SOFA_SOFAPHYSICSAPI_API SofaPhysicsOutputMesh::Impl
 {
@@ -68,6 +69,8 @@ public:
     const Index* getQuads();   ///< quads topology (4 indices / quad)
     int getQuads(int* values); ///< get the quad topology inside ouput @param values, of type int[ 4*nbQuads ]
     int getQuadsRevision();    ///< changes each time quads data is updated
+
+    int setTranslation(int* values);
 
     typedef sofa::core::visual::VisualModel SofaVisualOutputMesh;
     typedef sofa::component::visual::VisualModelImpl SofaOutputMesh;

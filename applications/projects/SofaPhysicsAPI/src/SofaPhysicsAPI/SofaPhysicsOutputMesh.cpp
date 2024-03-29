@@ -165,6 +165,8 @@ int SofaPhysicsOutputMesh::getQuadsRevision()    ///< changes each time quads da
     return impl->getQuadsRevision();
 }
 
+int SofaPhysicsOutputMesh::setTranslation(int* values) { return impl->setTranslation(values); }
+
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -335,7 +337,7 @@ const char*  SofaPhysicsOutputMesh::Impl::getVAttributeName(int index)          
     }
 }
 
-int          SofaPhysicsOutputMesh::Impl::getVAttributeSizePerVertex(int index) ///< vertices attribute #
+int SofaPhysicsOutputMesh::Impl::getVAttributeSizePerVertex(int index) ///< vertices attribute #
 {
     if ((unsigned)index >= sVA.size())
         return 0;
@@ -439,3 +441,14 @@ int SofaPhysicsOutputMesh::Impl::getQuadsRevision()    ///< changes each time qu
     data->getValue(); // make sure the data is updated
     return data->getCounter();
 }
+
+int SofaPhysicsOutputMesh::Impl::setTranslation(int* values)
+{
+    sObj->applyTranslation(values[0], values[1], values[2]);
+    //sObj->setTranslation(20, 0, 0);
+    //sofa::core::behavior::MechanicalState<DataTypes>* state = dynamic_cast< sofa::core::behavior::MechanicalState<DataTypes>* > (sObj->getContext()->getMechanicalState());
+    //const DataTypes::VecCoord& x = state->read(sofa::core::ConstVecCoordId::position())->getValue();
+    
+    return 9;
+}
+

@@ -427,3 +427,18 @@ int sofaVisualModel_getQuads(void* api_ptr, const char* name, int* buffer)
     return API_NULL;
 }
 
+int sofaPhysicsAPI_setTranslation(void* api_ptr, const char* name, int* buffer)
+{
+    SofaPhysicsAPI* api = (SofaPhysicsAPI*)api_ptr;
+    if (api)
+    {
+        SofaPhysicsOutputMesh* mesh = api->getOutputMeshPtr(name);
+        if (mesh == nullptr)
+            return API_MESH_NULL;
+        else
+            return mesh->setTranslation(buffer);
+    }
+
+    return API_NULL;
+}
+

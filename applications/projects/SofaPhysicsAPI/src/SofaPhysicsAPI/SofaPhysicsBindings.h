@@ -96,3 +96,5 @@ EXPORT_API int sofaVisualModel_getTriangles(void* api_ptr, const char* name, int
 
 EXPORT_API int sofaVisualModel_getNbQuads(void* api_ptr, const char* name); ///< Return the number of quads of the SofaPhysicsOutputMesh with name: @param name
 EXPORT_API int sofaVisualModel_getQuads(void* api_ptr, const char* name, int* buffer); ///< Get the quads using ouput @param values (type int[ 4*nbQuads ]) of the SofaPhysicsOutputMesh with name: @param name. Return error code.
+
+EXPORT_API int sofaPhysicsAPI_setTranslation(void* api_ptr, const char* name, int* buffer);
