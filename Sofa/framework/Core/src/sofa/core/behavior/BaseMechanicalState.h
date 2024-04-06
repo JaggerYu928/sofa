@@ -271,6 +271,8 @@ public:
     /// Translate the current state
     virtual void applyTranslation(const SReal dx, const SReal dy, const SReal dz)=0;
 
+    virtual void applyPosition(const SReal dx, const SReal dy, const SReal dz) = 0;
+
     /// \brief Rotate the current state
     ///
     /// This method is optional, it is used when the user want to interactively change the position of an object using Euler angles

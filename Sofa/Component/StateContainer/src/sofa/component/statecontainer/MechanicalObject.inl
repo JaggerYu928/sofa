@@ -687,6 +687,17 @@ void MechanicalObject<DataTypes>::applyTranslation (const SReal dx, const SReal 
     }
 }
 
+template <class DataTypes>
+void MechanicalObject<DataTypes>::applyPosition (const SReal dx, const SReal dy, const SReal dz)
+{
+    helper::WriteAccessor< Data<VecCoord> > x_wA = *this->write(core::VecCoordId::position());
+
+    for (unsigned int i = 0; i < x_wA.size(); i++)
+    {
+        DataTypes::set(x_wA[i], dx, dy, dz);
+    }
+}
+
 //Apply Rotation from Euler angles (in degree!)
 template <class DataTypes>
 void MechanicalObject<DataTypes>::applyRotation (const SReal rx, const SReal ry, const SReal rz)

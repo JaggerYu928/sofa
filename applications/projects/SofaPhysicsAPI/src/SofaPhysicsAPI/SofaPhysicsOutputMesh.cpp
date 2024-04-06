@@ -165,7 +165,7 @@ int SofaPhysicsOutputMesh::getQuadsRevision()    ///< changes each time quads da
     return impl->getQuadsRevision();
 }
 
-int SofaPhysicsOutputMesh::setTranslation(int* values) { return impl->setTranslation(values); }
+int SofaPhysicsOutputMesh::setPosition(int* values) { return impl->setPosition(values); }
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -442,11 +442,14 @@ int SofaPhysicsOutputMesh::Impl::getQuadsRevision()    ///< changes each time qu
     return data->getCounter();
 }
 
-int SofaPhysicsOutputMesh::Impl::setTranslation(int* values)
+int SofaPhysicsOutputMesh::Impl::setPosition(int* values)
 {
-    sObj->applyTranslation(values[0], values[1], values[2]);
+    //sObj->applyTranslation(values[0], values[1], values[2]);
+    //sObj->getContext()->getMechanicalState();
     //sObj->setTranslation(20, 0, 0);
-    //sofa::core::behavior::MechanicalState<DataTypes>* state = dynamic_cast< sofa::core::behavior::MechanicalState<DataTypes>* > (sObj->getContext()->getMechanicalState());
+    sofa::core::behavior::BaseMechanicalState *state = sObj->getContext()->getMechanicalState();
+    state->applyPosition(values[0], values[1], values[2]);
+    //sofa::simulation::Node::SPtr rootContext = static_cast<simulation::Node*>(this->getContext()->getRootContext());
     //const DataTypes::VecCoord& x = state->read(sofa::core::ConstVecCoordId::position())->getValue();
     
     return 9;

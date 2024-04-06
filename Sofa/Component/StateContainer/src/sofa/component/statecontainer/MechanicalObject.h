@@ -191,6 +191,8 @@ public:
     /// Apply translation vector to the position.
     void applyTranslation (const SReal dx, const SReal dy, const SReal dz) override;
 
+    void applyPosition (const SReal dx, const SReal dy, const SReal dz) override;
+
     /// Rotation using Euler Angles in degree.
     void applyRotation (const SReal rx, const SReal ry, const SReal rz) override;
 

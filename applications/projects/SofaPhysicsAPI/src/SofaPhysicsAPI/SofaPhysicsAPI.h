@@ -226,7 +226,7 @@ public:
     int getQuads(int* values); ///< get the quad topology inside ouput @param values, of type int[ 4*nbQuads ]. Return error code.
     int getQuadsRevision();    ///< changes each time quads data is updated
 
-    int setTranslation(int* values);
+    int setPosition(int* values);
 
     /// Internal implementation sub-class
     class Impl;
